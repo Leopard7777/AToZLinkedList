@@ -1,0 +1,7 @@
+﻿  AToZLinkedList.c
+  linkedList.c
+  test.c
+  ui.c
+C:\Users\cby90\Desktop\AToZLinkedList\AToZLinkedList\ui.c(28,31): warning C4047: '!=': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
+  코드를 생성하고 있습니다...
+  AToZLinkedList.vcxproj -> C:\Users\cby90\Desktop\AToZLinkedList\x64\Debug\AToZLinkedList.exe
