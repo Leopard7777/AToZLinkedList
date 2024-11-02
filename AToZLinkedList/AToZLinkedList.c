@@ -7,4 +7,5 @@ int main(void)
 {
 	InitList();
 	RunEventLoop();
+	ReleaseList();
 }

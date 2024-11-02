@@ -1,7 +1,3 @@
-﻿  AToZLinkedList.c
-  linkedList.c
-  test.c
-  ui.c
-C:\Users\cby90\Desktop\AToZLinkedList\AToZLinkedList\ui.c(28,31): warning C4047: '!=': 'int'의 간접 참조 수준이 'void *'과(와) 다릅니다.
-  코드를 생성하고 있습니다...
+﻿  linkedList.c
+C:\Users\cby90\Desktop\AToZLinkedList\AToZLinkedList\linkedList.c(31,3): warning C4098: 'AddNewNode': 'void' 함수에서 값을 반환하고 있습니다.
   AToZLinkedList.vcxproj -> C:\Users\cby90\Desktop\AToZLinkedList\x64\Debug\AToZLinkedList.exe

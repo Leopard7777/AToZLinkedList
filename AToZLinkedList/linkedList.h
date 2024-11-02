@@ -25,3 +25,4 @@ extern MYNODE g_TailNode;
 
 void InitList();
 void AddNewNode(USERDATA* pUser);
+void ReleaseList(void);

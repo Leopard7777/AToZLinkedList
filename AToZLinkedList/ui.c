@@ -3,7 +3,7 @@
 #include "test.h"
 
 
-void printList()
+void PrintList()
 {
 	MYNODE* pTmp = &g_HeadNode;
 	while (pTmp != NULL)
@@ -12,7 +12,7 @@ void printList()
 		pTmp = pTmp->pNext;
 	}
 }
-MENU printMenu()
+MENU PrintMenu()
 {
 	MENU input;
 	puts("[1] new  [2] search  [3] edit  [4] remove  [5] print  [0] exit");
@@ -25,11 +25,11 @@ MENU printMenu()
 void RunEventLoop()
 {	
 	MENU input;
-	while ((input = printMenu()) != NULL)
+	while ((input = PrintMenu()) != NULL)
 	{
 		switch (input) {
 		case NEW:
-			testStep01();
+			TestStep01();
 			break;
 		case SEARCH:
 			break;
@@ -38,7 +38,7 @@ void RunEventLoop()
 		case REMOVE:
 			break;
 		case PRINT:
-			printList();
+			PrintList();
 			break;
 		case EXIT:
 			return;
