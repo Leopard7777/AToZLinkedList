@@ -24,5 +24,5 @@ extern MYNODE g_HeadNode;
 extern MYNODE g_TailNode;
 
 void InitList();
-void AddNewNode(USERDATA* pUser);
+void AddNewNode(int age, char* pszName, char* pszPhone);
 void ReleaseList(void);

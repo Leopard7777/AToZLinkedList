@@ -23,34 +23,38 @@ bool IsEmpty(void)
 		return false;
 }
 
-void AddNewNode(USERDATA* pUser)
+void AddNewNode(int age, char* pszName, char* pszPhone)
 {
 	MYNODE* pTmp = &g_TailNode;
-	MYNODE* pNewData = (MYNODE*)malloc(sizeof(MYNODE));
-	if (pNewData == NULL)
+	MYNODE* pNewNode = (MYNODE*)malloc(sizeof(MYNODE));
+	if (pNewNode == NULL)
 		return NULL;
-	pNewData->bNew = true;
+	pNewNode->bNew = true;
 		
-	int lenOfKey = (int)strlen(pUser->name);
-	pNewData->pszKey = malloc(lenOfKey + 1);
-	strcpy_s(pNewData->pszKey, lenOfKey + 1, pUser->name); // Key
+	int lenOfKey = (int)strlen(pszName);
+	pNewNode->pszKey = malloc(lenOfKey + 1);
+	strcpy_s(pNewNode->pszKey, lenOfKey + 1, pszName); // Key
 
-	if (pUser != NULL && sizeof(pUser) > 0)
+	if (pNewNode->pszKey != NULL && lenOfKey > 0)
 	{
-		void* pNewDataCache = malloc(sizeof(USERDATA));
-		memcpy_s(pNewDataCache, sizeof(USERDATA), pUser, sizeof(USERDATA)); // DataCahce
-		pNewData->pDataCache = pNewDataCache;
-		pNewData->sizeOfData = sizeof(pNewDataCache);
+		USERDATA* pNewData = malloc(sizeof(USERDATA));
+		pNewData->age = 10;
+		strcpy_s(pNewData->name, sizeof(pNewData->name), pszName);
+		strcpy_s(pNewData->phone, sizeof(pNewData->phone), pszPhone);
+		pNewData->isDeleted = false;
+
+		pNewNode->pDataCache = pNewData;
+		pNewNode->sizeOfData = sizeof(pNewData);
 			
 	}
-	pNewData->sizeOfData = sizeof(USERDATA);
-	pNewData->offset = 0;
+	pNewNode->sizeOfData = sizeof(USERDATA);
+	pNewNode->offset = 0;
 
-	pNewData->pPrev = pTmp->pPrev;
-	pNewData->pNext = pTmp;
+	pNewNode->pPrev = pTmp->pPrev;
+	pNewNode->pNext = pTmp;
 
-	pTmp->pPrev->pNext = pNewData;
-	pTmp->pPrev = pNewData;
+	pTmp->pPrev->pNext = pNewNode;
+	pTmp->pPrev = pNewNode;
 
 
 
