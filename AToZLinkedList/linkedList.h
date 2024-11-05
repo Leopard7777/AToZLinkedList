@@ -24,5 +24,6 @@ extern MYNODE g_HeadNode;
 extern MYNODE g_TailNode;
 
 void InitList();
-void AddNewNode(int age, char* pszName, char* pszPhone);
+void AddNewNode(bool bNew, char* pszKey, void* pDataCache, unsigned int sizeOfData, unsigned int offset);
+void LoadListFromFile(void);
 void ReleaseList(void);

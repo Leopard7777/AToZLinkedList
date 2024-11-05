@@ -1,9 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "ui.h"
 #include "linkedList.h"
 #include "test.h"
 
 
-void NewNodeInput()
+
+
+	
+
+void NewNodeInput(void)
 {
 	int age;
 	char name[32];
@@ -15,10 +22,16 @@ void NewNodeInput()
 	printf("phone: ");
 	scanf_s("%s%*c", phone, (unsigned)sizeof(phone));
 
-	AddNewNode(age, name, phone);
+	USERDATA* newUser = malloc(sizeof(USERDATA));
+	
+	newUser->age = age;
+	strcpy_s(newUser->name, sizeof(newUser->name), name);
+	strcpy_s(newUser->phone, sizeof(newUser->phone), phone);
+
+	AddNewNode(true, name, newUser, sizeof(newUser), 0);
 }
 
-void PrintList()
+void PrintList(void)
 {
 	MYNODE* pTmp = &g_HeadNode;
 	while (pTmp != NULL)
@@ -28,7 +41,7 @@ void PrintList()
 	}
 	_getch();
 }
-MENU PrintMenu()
+MENU PrintMenu(void)
 {
 	system("cls");
 	MENU input;

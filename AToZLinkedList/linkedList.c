@@ -23,32 +23,29 @@ bool IsEmpty(void)
 		return false;
 }
 
-void AddNewNode(int age, char* pszName, char* pszPhone)
+void AddNewNode(bool boolNew, char* pszKey, void* pDataCache, 
+	unsigned int sizeOfData, unsigned int intOffset)
 {
 	MYNODE* pTmp = &g_TailNode;
 	MYNODE* pNewNode = (MYNODE*)malloc(sizeof(MYNODE));
 	if (pNewNode == NULL)
 		return NULL;
-	pNewNode->bNew = true;
+	pNewNode->bNew = boolNew;
 		
-	int lenOfKey = (int)strlen(pszName);
+	int lenOfKey = (int)strlen(pszKey);  // Key
 	pNewNode->pszKey = malloc(lenOfKey + 1);
-	strcpy_s(pNewNode->pszKey, lenOfKey + 1, pszName); // Key
+	if (pNewNode->pszKey == NULL)
+		return 0;
+	strcpy_s(pNewNode->pszKey, lenOfKey + 1, pszKey);
 
-	if (pNewNode->pszKey != NULL && lenOfKey > 0)
+	if (pNewNode->pszKey != NULL && lenOfKey > 0) //datacache & sizeofdata
 	{
 		USERDATA* pNewData = malloc(sizeof(USERDATA));
-		pNewData->age = 10;
-		strcpy_s(pNewData->name, sizeof(pNewData->name), pszName);
-		strcpy_s(pNewData->phone, sizeof(pNewData->phone), pszPhone);
-		pNewData->isDeleted = false;
-
 		pNewNode->pDataCache = pNewData;
 		pNewNode->sizeOfData = sizeof(pNewData);
 			
 	}
-	pNewNode->sizeOfData = sizeof(USERDATA);
-	pNewNode->offset = 0;
+	pNewNode->offset = intOffset;
 
 	pNewNode->pPrev = pTmp->pPrev;
 	pNewNode->pNext = pTmp;
@@ -59,6 +56,24 @@ void AddNewNode(int age, char* pszName, char* pszPhone)
 
 
 	return;	
+}
+
+void LoadListFromFile(void)
+{
+	FILE* fp = NULL;
+	fopen_s(&fp, "listData.dat", "rb");
+	if (fp == NULL)
+		return 0;
+
+	unsigned int offset = 0;
+	USERDATA user = { 0 };
+	while (fread(&user, sizeof(USERDATA), 1, fp) > 0)
+	{
+		AddNewNode(false, user.name, &user, sizeof(user), offset);
+		++offset;
+	}
+
+	fclose(fp);
 }
 
 void ReleaseList(void)
